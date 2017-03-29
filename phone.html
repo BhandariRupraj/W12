@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Call Me</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+      function formatPhoneNumber(user) {
+        return '(' + user.areaCode + ') ' +
+             user.prefix + '-' + user.extension;
+			}
+
+			const user = {areaCode: 660,prefix: 562, 
+              ext: 1551} ;
+
+			const element = (
+	      <h1>
+	        Call me, {formatPhoneNumber(user)}!
+	      </h1>
+			);
+
+			ReactDOM.render(
+          element, // what to render
+          document.getElementById('root')  // where to put it
+			);
+
+    </script>
+  </body>
+</html>

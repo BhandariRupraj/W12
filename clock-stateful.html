@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Clock - Stateful</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="opening"></div>
+    <div id="root"></div>
+    <footer>Use inspect to see it in action :)</footer> 
+    <script type="text/babel">
+    
+		class Clock extends React.Component{
+		  constructor(props) {
+        super(props);
+        this.state = {date: new Date()};
+			}
+			componentDidMount() {
+	      this.timerID = setInterval(
+	        () => this.tick(),
+	        1000
+	      );
+      }
+			componentWillUnmount() {
+		    clearInterval(this.timerID);
+		  }
+		  tick() {
+		    this.setState({ date: new Date() });
+		  }
+			render() {
+			    return (
+			      <div>
+			        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+			      </div>
+			    );
+			}
+		}
+		
+		function ClockTree() {
+		  return (
+		    <div>
+		      <Clock />
+		      <Clock />
+		      <Clock />
+		    </div>
+		  );
+		}
+
+		
+	  ReactDOM.render(
+      <Clock />,
+      document.getElementById('root')
+	 );
+		
+		ReactDOM.render(
+      <h1>Hello, world!</h1>,
+      document.getElementById('opening')
+    );
+    
+		// Make many - each with its own state
+		// ReactDOM.render(
+		//    <ClockTree />,
+		//    document.getElementById('root')
+		//	);
+
+
+
+    </script>
+  </body>
+</html>
